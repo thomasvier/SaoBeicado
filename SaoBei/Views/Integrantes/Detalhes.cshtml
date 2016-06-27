@@ -1,0 +1,21 @@
+﻿@model SaoBei.Models.Integrante
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Integrante</h4>
+        </div>
+        <div class="modal-body">
+            <p>@Html.DisplayNameFor(model => model.Nome): @Html.DisplayFor(model => model.Nome)</p>
+            <p>@Html.DisplayNameFor(model => model.Telefone): @Html.DisplayFor(model => model.Telefone)</p>
+            <p>@Html.DisplayNameFor(model => model.DataNascimento): @Html.DisplayFor(model => model.DataNascimento)</p>
+            <p>@Html.DisplayNameFor(model => model.Email): @Html.DisplayFor(model => model.Email)</p>
+            <p>@Html.DisplayNameFor(model => model.TipoIntegrante): @Html.DisplayFor(model => model.TipoIntegrante)</p>
+            <p>@Html.DisplayNameFor(model => model.Ativo): @Html.DisplayFor(model => model.Ativo)</p> 
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+    </div>
+</div>

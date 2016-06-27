@@ -1,0 +1,18 @@
+﻿@model SaoBei.Models.LocalJogo
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Local de jogo</h4>
+        </div>
+        <div class="modal-body">
+            <p>@Html.DisplayNameFor(model => model.Nome): @Html.DisplayFor(model => model.Nome)</p>
+            <p>@Html.DisplayNameFor(model => model.ValorJogo): @Html.DisplayFor(model => model.ValorJogo)</p>
+            <p>@Html.DisplayNameFor(model => model.Ativo): @Html.DisplayFor(model => model.Ativo)</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+    </div>
+</div>

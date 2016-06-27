@@ -1,0 +1,84 @@
+﻿@model SaoBei.Models.Integrante
+
+@{
+    ViewBag.Title = "Integrante";
+}
+
+<h2>Integrante</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()   
+    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nome" } })
+            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", @placeholder = "(00) 0000-0000" } })
+            @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "E-mail" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control", @placeholder = "Senha" } })
+            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "Data de nascimento" } })
+            @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.TipoIntegrante, htmlAttributes: new { @class = "control-label" })
+            @Html.EnumDropDownListFor(model => model.TipoIntegrante, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TipoIntegrante, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="checkbox">
+        @Html.EditorFor(model => model.Ativo)
+        @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label" })
+        @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="row">
+        <div class="col-md-10">
+            <button type="submit" class="btn btn-primary" title="Salvar"><i class="glyphicon glyphicon-floppy-save"></i> Salvar</button>
+            <button type="button" class="btn btn-danger" title="Voltar" onclick="location.href='@Url.Action("Index", "Integrantes")'"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</button>
+        </div>
+    </div>
+    
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/Views/Integrantes/Integrante.js")
+}

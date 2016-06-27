@@ -1,0 +1,154 @@
+﻿@model SaoBei.Models.Calendario
+
+@{
+    ViewBag.Title = "Calendário";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Calendário</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+
+    <div class="row">            
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Ano, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Ano, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Ano, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <div class="panel panel-default">
+        <div class="panel-heading">Meses</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Janeiro)
+                        @Html.LabelFor(model => model.Janeiro, htmlAttributes: new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Janeiro, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Fevereiro)
+                        @Html.LabelFor(model => model.Fevereiro, htmlAttributes: new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Fevereiro, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Marco)
+                        @Html.LabelFor(model => model.Marco, htmlAttributes: new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Marco, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Abril)
+                        @Html.LabelFor(model => model.Abril, htmlAttributes: new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Abril, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Maio)
+                        @Html.LabelFor(model => model.Maio, htmlAttributes: new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Maio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Junho)
+                        @Html.LabelFor(model => model.Junho, htmlAttributes: new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Junho, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Julho)
+                        @Html.LabelFor(model => model.Julho, htmlAttributes: new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Julho, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Agosto)
+                        @Html.LabelFor(model => model.Agosto, htmlAttributes: new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Agosto, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Setembro)
+                        @Html.LabelFor(model => model.Setembro, htmlAttributes: new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Setembro, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Outubro)
+                        @Html.LabelFor(model => model.Outubro, htmlAttributes: new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Outubro, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Novembro)
+                        @Html.LabelFor(model => model.Novembro, htmlAttributes: new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Novembro, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Dezembro)
+                        @Html.LabelFor(model => model.Dezembro, htmlAttributes: new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Dezembro, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>        
+
+    <div class="row">            
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.ValorMensalidade, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.ValorMensalidade, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ValorMensalidade, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">            
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.ValorAnuidade, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.ValorAnuidade, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ValorAnuidade, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.DataVencimentoAnuidade, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.DataVencimentoAnuidade, new { htmlAttributes = new { @class = "form-control datepicker" } })
+            @Html.ValidationMessageFor(model => model.DataVencimentoAnuidade, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-10">
+            <button type="submit" class="btn btn-primary" title="Salvar"><i class="glyphicon glyphicon-floppy-save"></i> Salvar</button>
+            <button type="button" class="btn btn-danger" title="Voltar" onclick="location.href='@Url.Action("Index", "Calendarios")'"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/Views/Calendarios/Calendario.js")
+}

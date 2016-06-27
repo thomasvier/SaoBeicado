@@ -1,0 +1,22 @@
+﻿@Scripts.Render("~/bundles/jquery")
+@if (TempData["Mensagem"] != null)
+{
+    <br />
+    <div class="box-msg-erro">
+        <div id="mensagem" class="alert @Html.Raw(TempData["ClasseAlert"].ToString())">
+            <b>@TempData["Mensagem"]</b>
+            <button type="button" class="close" data-dismiss="alert">×</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        if ($('#mensagem').is('[class*="alert-"]'))
+        {
+            setTimeout(function () {
+                $('#mensagem').slideUp(1000);
+            }, 10000);
+        }
+    })
+</script>

@@ -1,0 +1,82 @@
+﻿@model SaoBei.Models.Jogo
+
+@{
+    ViewBag.Title = "Jogo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Jogo</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label" })                
+                @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.Hora, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Hora, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Label("Local do jogo")
+                        @Html.DropDownListFor(model => model.LocalJogoID, new SelectList(ViewBag.LocaisJogo, "ID", "Nome"), "Selecione", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Label("Adversário")
+                @Html.DropDownListFor(model => model.AdversarioID, new SelectList(ViewBag.Adversarios, "ID", "Nome"), "Selecione", htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">            
+            <div class="col-md-12">
+                @Html.Label("Calendário")
+                @Html.DropDownListFor(model => model.CalendarioID, new SelectList(ViewBag.Calendarios, "ID", "Ano"), "Selecione", htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.SituacaoJogo, htmlAttributes: new { @class = "control-label" })
+                @Html.EnumDropDownListFor(model => model.SituacaoJogo, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SituacaoJogo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="motivoCancelamento" class="row hide">            
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.MotivoCancelamento, htmlAttributes: new { @class = "control-label" })
+                @Html.TextAreaFor(model => model.MotivoCancelamento, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MotivoCancelamento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-10">
+                <button type="submit" class="btn btn-primary" title="Salvar"><i class="glyphicon glyphicon-floppy-save"></i> Salvar</button>
+                <button type="button" class="btn btn-danger" title="Voltar" onclick="location.href='@Url.Action("Index", "Jogos")'"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</button>
+            </div>
+        </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

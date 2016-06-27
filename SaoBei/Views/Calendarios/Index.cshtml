@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SaoBei.Models.Calendario>
+
+@{
+    ViewBag.Title = "Calendários";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Calendários</h2>
+
+<div class="form-group">
+    <button type="button" title="Novo" name="btnNovo" id="btnNovo" class="btn btn-success" onclick="location.href='@Url.Action("Calendario", "Calendarios")'">
+        <i class="glyphicon glyphicon-plus"></i> Novo calendário
+    </button>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ano)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorMensalidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorAnuidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataVencimentoAnuidade)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ano)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorMensalidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorAnuidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataVencimentoAnuidade)
+                </td>
+                <td>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary edit" title="Editar" onclick="location.href='@Url.Action("Calendario", "Calendarios", new { item.ID })'"><i class="glyphicon glyphicon-edit"></i></button>
+                        <button class="btn btn-default details" title="Visualizar" data-id="@item.ID"><i class="glyphicon glyphicon-new-window"></i></button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div id="detalhes" class="modal"></div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Views/Calendarios/Index.js")
+}

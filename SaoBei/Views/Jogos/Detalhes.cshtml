@@ -1,0 +1,21 @@
+﻿@model SaoBei.Models.Jogo
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Jogo</h4>
+        </div>
+        <div class="modal-body">
+            <p>@Html.DisplayNameFor(model => model.Data): @Html.DisplayFor(model => model.Data)</p>
+            <p>Local do jogo: @Html.DisplayFor(model => model.LocalJogo.Nome)</p>
+            <p>Adversário: @Html.DisplayFor(model => model.Adversario.Nome)</p>
+            <p>Situação: @Html.DisplayFor(model => model.SituacaoJogo)</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jqueryval")

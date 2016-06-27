@@ -1,0 +1,54 @@
+﻿@model SaoBei.Models.MensalidadeIntegrante
+@using SaoBei.Models;
+
+@{
+    ViewBag.Title = "Mensalidade";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Mensalidades", FormMethod.Get, new { name = "formIndexMensalidades", id = "formIndexMensalidades" }))
+{
+    <div class="row">        
+        <div class="col-md-12">                        
+            @Html.Label("Calendário", htmlAttributes: new { @class = "control-label" })
+            @Html.DropDownListFor(model => model.CalendarioID, new SelectList(ViewBag.Calendarios, "ID", "Ano"), "Selecione", htmlAttributes: new { @class = "form-control" })                        
+        </div>                
+        <br />        
+        <div class="col-md-12">                        
+            <button type="button" title="Baixar mensalidade" name="btnBaixar" id="btnBaixar" class="btn btn-success btn-block" onclick="location.href='@Url.Action("Mensalidade", "Mensalidades", new { Model.CalendarioID })'">
+                <i class="glyphicon glyphicon-usd"></i> Baixar mensalidades
+            </button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Gráfico de mensalidades pagas por mês</div>
+                <div class="panel-body">
+                    @Html.Partial("GraficoMensalidadesMes")
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Gráfico de anuidades pagas por mês</div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Valor de mensalidades pagas por mês</div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Views/Mensalidades/Index.js")
+}

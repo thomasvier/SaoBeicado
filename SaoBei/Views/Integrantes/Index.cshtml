@@ -1,0 +1,100 @@
+﻿@model IPagedList<SaoBei.Models.Integrante>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Integrantes";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">Integrantes</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Index", "Integrantes", FormMethod.Get))
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="selAtivoFiltro">Situação</label>
+                    <select id="selAtivoFiltro" class="form-control">
+                        <option value="2">Todos</option>
+                        <option value="1">Ativos</option>
+                        <option value="0">Inativos</option>
+                    </select>
+                    @Html.Hidden("ativoFiltro", ViewBag.AtivoFiltroAtual as string, htmlAttributes: new { @value = @ViewBag.AtivoFiltroAtual })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="filtro">Nome</label>
+                    @Html.TextBox("filtro", ViewBag.FiltroAtual as String, htmlAttributes: new { @class = "form-control", @placeholder = "Nome do integrante" })
+                </div>
+            </div>
+            <br />
+            <div>
+                <button type="submit" id="btnPesquisar" class="btn btn-primary pull-left"><i class="glyphicon glyphicon-search"></i> Pesquisar</button>
+                <button type="button" title="Novo" name="btnNovo" id="btnNovo" class="btn btn-success pull-right" onclick="location.href='@Url.Action("Integrante", "Integrantes")'">
+                    <i class="glyphicon glyphicon-plus"></i> Novo item
+                </button>
+            </div>
+        }
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    @Html.ActionLink("Nome", "Index", new { sortOrder = ViewBag.DescricaoSort, filtroAtual = @ViewBag.FiltroAtual })
+                </th>
+                <th>
+                    Telefone
+                </th>
+                <th>
+                    E-mail
+                </th>
+                <th>
+                    Ativo
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ativo)
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-primary edit" title="Editar" onclick="location.href='@Url.Action("Integrante", "Integrantes", new { item.ID })'"><i class="glyphicon glyphicon-edit"></i></button>
+                            <button class="btn btn-default details" title="Visualizar" data-id="@item.ID"><i class="glyphicon glyphicon-new-window"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div class="panel-footer">
+        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", new
+   {
+       page,
+       sortOrder = ViewBag.CurrentSort,
+       filtroAtual = ViewBag.FiltroAtual,
+       ativoFiltroAtual = ViewBag.AtivoFiltroAtual
+   }), PagedListRenderOptions.Classic)
+    </div>
+</div>
+<div id="detalhes" class="modal"></div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Views/Integrantes/Index.js")
+}

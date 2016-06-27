@@ -1,0 +1,15 @@
+﻿@using Chart.Mvc.Extensions;
+@using Chart.Mvc.ComplexChart;
+
+@{
+    const string Canvas = "Mensalidades";
+    var complexChart = new LineChart();
+    complexChart.ComplexData.Labels.AddRange(ViewBag.Labels as IEnumerable<string>);
+    complexChart.ComplexData.Datasets.AddRange(ViewBag.Datasets as IEnumerable<ComplexDataset>);
+}
+
+<div style="overflow-x: auto">
+    <canvas id="@Canvas"></canvas>
+
+    @Html.CreateChart(Canvas, complexChart)
+</div>

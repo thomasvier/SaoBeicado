@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = null;
+}
+
+@Scripts.Render("~/Scripts/jquery-1.10.2.js")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/modernizr")
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Signin Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="~/Content/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="~/Content/signin.css" rel="stylesheet">
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+</head>
+<body>
+    <div class="container">
+        @{Html.RenderPartial("_Mensagem");}
+        <form method="post" class="form-signin">
+            <h2 class="form-signin-heading">Acesso</h2>
+            <label for="login" class="sr-only">Usuário</label>
+            @Html.TextBox("email", "", htmlAttributes: new { @class = "form-control", @placeholder = "E-mail" })
+            <label for="senha" class="sr-only">Senha</label>
+            @Html.TextBox("Senha", "", htmlAttributes: new { @class = "form-control", @type = "Password", @placeholder = "Senha" })
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#login").focus();
+    });
+</script>

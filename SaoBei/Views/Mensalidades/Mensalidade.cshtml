@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SaoBei.Models.MensalidadeIntegrante>
+@using SaoBei.Models;
+@using System.Globalization;
+
+@{
+    ViewBag.Title = "Mensalidade";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Mensalidades</h2>
+
+@using (Html.BeginForm("Mensalidade", "Mensalidades", FormMethod.Get, new { name = "formMensalidades", id = "formMensalidades" }))
+{
+
+    <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-12">
+            @Html.Label("Calendário")
+            @Html.DropDownList("CalendarioID", new SelectList(ViewBag.Calendarios, "ID", "Ano"), "Selecione", htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-12">
+            @Html.Label("Integrante")
+            @Html.DropDownList("IntegranteID", new SelectList(ViewBag.Integrantes, "ID", "Nome"), "Selecione", htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+}
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Mês
+            </th>    
+            <th>
+                Situação
+            </th>        
+            <th>                
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            var mes = new DateTime(DateTime.Now.Year, item.Mes, 1).ToString("MMMM", CultureInfo.CurrentCulture);
+            var situacao = item.DataPagamento != null ? "Paga" : "Aberta";
+            var estilo = situacao == "Paga" ? "text-primary" : "text-danger";
+
+            <tr>
+                <td>
+                    <h4 style="text-transform: capitalize">@mes</h4>
+                </td>
+                <td>
+                    <h4 class="@estilo" style="text-transform: capitalize">@situacao</h4>
+                </td>
+                <td>
+                    <button id="baixar" class="btn btn-success details pull-right btn-block" title="Baixar" 
+                        data-mensalidade="@item.ID">
+                        <i class="glyphicon glyphicon-usd"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div id="baixarMensalidades" class="modal"></div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Views/Mensalidades/Mensalidade.js")
+    @Scripts.Render("~/bundles/jqueryval")
+}
